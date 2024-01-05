@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    # Use postegres's official image from docker hub
+    image: postgres:latest
+    # Container name
+    container_name: postgres_db
+    # DB init
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    # ports exposed
+    ports:
+      # maps port 5432 of the PostgreSQL container to port 5432 of your host machine.
+      - '5431:5432'
+    # Volumes
+    volumes:
+      # Creates a persistent volume by linking your host machine's ./data directory to the container's /var/lib/postgresql/data directory, which ensures that the database data is persistent even if the container is shut down.
+      - ./data:/var/lib/postgresql/data
